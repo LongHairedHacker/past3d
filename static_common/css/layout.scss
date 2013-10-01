@@ -1,0 +1,66 @@
+
+#header {
+	margin: 5px;
+	border-bottom: #eee 1px solid;
+}
+
+#content {
+	margin: 25px;
+	margin-top: 0 px;
+	margin-bottom: 0 px;
+}
+
+@mixin gridcontainer {
+	margin: {
+		top: 4px;
+		right: 4px;
+	}
+}
+
+@mixin roundconers($color, $radius) {
+	border: {
+		width: $radius;
+		style: solid;
+		color: $color; 
+		radius: $radius/2;
+	}
+}
+
+#viewer {
+	@include gridcontainer;
+	@include roundconers(#eee,6px);
+	background-color: #eee;
+	height: 60%;
+
+}
+
+#controls {
+	@include gridcontainer;
+}
+
+#fileinfos {
+	@include gridcontainer;
+	@include roundconers(#eee,6px);
+	background-color: #eee;
+	height: 60%;
+
+	.pure-button {
+		margin: 2px;
+	}
+}
+
+.textcontainer {
+	@include gridcontainer;
+	@include roundconers(#eee,6px);
+	background-color: #eee;
+}
+
+.button-green {
+	background-color: #1CB841;
+	color: #ffffff;
+}
+
+.button-lightblue {
+	background-color: #42B8DD;
+	color: #ffffff;
+}

@@ -1,0 +1,51 @@
+#header {
+  margin: 5px;
+  border-bottom: #eee 1px solid; }
+
+#content {
+  margin: 25px;
+  margin-top: 0 px;
+  margin-bottom: 0 px; }
+
+#viewer {
+  margin-top: 4px;
+  margin-right: 4px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #eeeeee;
+  border-radius: 3px;
+  background-color: #eee;
+  height: 60%; }
+
+#controls {
+  margin-top: 4px;
+  margin-right: 4px; }
+
+#fileinfos {
+  margin-top: 4px;
+  margin-right: 4px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #eeeeee;
+  border-radius: 3px;
+  background-color: #eee;
+  height: 60%; }
+  #fileinfos .pure-button {
+    margin: 2px; }
+
+.textcontainer {
+  margin-top: 4px;
+  margin-right: 4px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #eeeeee;
+  border-radius: 3px;
+  background-color: #eee; }
+
+.button-green {
+  background-color: #1CB841;
+  color: #ffffff; }
+
+.button-lightblue {
+  background-color: #42B8DD;
+  color: #ffffff; }

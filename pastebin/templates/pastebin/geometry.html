@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block headeraddons %}
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  	<style>
+   		.chromeFrameInstallDefaultStyle {
+     		margin-top: 10px;
+     		width: 800px;
+     		border: 5px solid blue;
+   		}
+  	</style>
+  
+    <script src="{{STATIC_URL}}js/jquery-1.10.2.min.js"></script>
+  	<script src="{{STATIC_URL}}js/thingview.js/three.min.js"></script>
+  	<script src="{{STATIC_URL}}js/thingview.js/thingiview.js"></script>
+
+  	<script>
+    	$(window).load(function() {
+      	// You may want to place these lines inside an onload handler
+      		CFInstall.check({
+        		mode: "inline", // the default
+        		node: "prompt"
+      		});
+      });
+
+     
+
+      $(document).ready(function() {
+      		thingiurlbase = "{{STATIC_URL}}js/thingview.js";
+          thingiview = new Thingiview("viewer",100,10);
+          thingiview.initScene();
+          thingiview.setObjectColor('#C0D8F0');
+          thingiview.setBackgroundColor('#eee');
+          thingiview.setRotation(false);
+          thingiview.setShowPlane(true);
+        	thingiview.loadSTL('{{ geometry.file.url }}'); 
+
+          var wireframe = false;
+          var grid = true;
+          var rotate  = false;
+
+          $('#view_wireframe').click(function() {
+            wireframe = !wireframe;
+            if(wireframe) {
+              thingiview.setObjectMaterial('wireframe');
+              $(this).addClass('pure-button-active');
+            }
+            else {
+              thingiview.setObjectMaterial('solid');
+              $(this).removeClass('pure-button-active');
+            }
+          });
+
+          $('#view_grid').click(function() {
+            grid = !grid;
+
+            thingiview.setShowPlane(grid);
+
+            if(grid) {
+              $(this).addClass('pure-button-active');
+            }
+            else {
+              $(this).removeClass('pure-button-active');
+            }
+          });
+
+          $('#view_rotate').click(function() {
+            rotate = !rotate;
+
+            thingiview.setRotation(rotate);
+
+            if(rotate) {
+              $(this).addClass('pure-button-active');
+            }
+            else {
+              $(this).removeClass('pure-button-active');
+            }
+          });
+      });    	
+
+  </script>
+{% endblock %}
+
+
+{% block content %}
+<div id="content">
+<div id="prompt">
+  <!-- if IE without GCF, prompt goes here -->
+</div>
+<h1>{{ geometry.name }}</h1>
+<div class="pure-g-r">
+  <div class="pure-u-2-3">
+    <div id="viewer"></div>
+  </div>
+  <div class="pure-u-1-3">
+    <div id="fileinfos">
+      <h2><i class="icon-beaker"></i> Infos</h2>
+      <div class="pure-g-r">
+        <div class="pure-u-1-3">
+          <i class="icon-calendar"></i> <b>uploaded:</b>
+        </div>
+        <div class="pure-u-2-3">
+          {{ geometry.date}}<br/>
+        </div>
+      </div>
+      <div class="pure-g-r">
+        <div class="pure-u-1-3">
+          <i class="icon-user"> </i><b>by:</b>
+        </div>
+        <div class="pure-u-2-3">
+            {{geometry.user.username}}
+        </div>
+      </div>
+      <div class="pure-g-r">
+        <div class="pure-u-1-3">
+          <b><i class="icon-file"> </i> size:</b> 
+        </div>
+        <div class="pure-u-2-3">
+          {{geometry.file.size | filesizeformat}}
+        </div>
+      </div>
+      <div class="pure-g-r">
+        <div class="pure-u-1-3">
+          <i class="icon-code"></i> <b>polygons:</b>
+        </div>
+        <div class="pure-u-2-3">
+            {{geometry.get_polycount}}
+        </div>
+      </div>
+    
+      <h2><i class="icon-download-alt"></i> Downloads</h2>
+      <a class="pure-button button-green" href="{{geometry.file.url}}"><i class="icon-download"></i> Download Model</a><br/> 
+      {% if geometry.sourcefile %}
+      <a class="pure-button button-lightblue" href="{{geometry.sourcefile.url}}"><i class="icon-edit-sign"></i> Download Source</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<div class="pure-g-r">
+  <div class="pure-u-2-3">
+    <div id="controls">
+      <button class="pure-button" id="view_wireframe">Wireframe</button>
+      <button class="pure-button pure-button-active" id="view_grid">Grid</button>
+      <button class="pure-button" id="view_rotate">Rotation</button>
+    </div>
+  </div>
+</div>
+<div class="textcontainer">
+  {{ geometry.description }} 
+</div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>past3d :: {{ title }} </title>
+
+  <link rel="stylesheet" href="{{STATIC_URL}}css/pure/pure-min.css">
+  
+  <link rel="stylesheet" href="{{STATIC_URL}}css/font-awesome/css/font-awesome.min.css">
+  <!--[if IE 7]>
+  <link rel="stylesheet" href="{{STATIC_URL}}css/font-awesome/css/font-awesome-ie7.min.css">
+  <![endif]-->
+
+  <link rel="stylesheet" href="{{STATIC_URL}}css/layout.css">
+
+  {% block headeraddons %}
+  {% endblock %}
+</head>
+<body>
+<div id="header">
+  <div class="pure-menu pure-menu-open pure-menu-horizontal">
+      <a href="#" class="pure-menu-heading">past3d</a>
+
+      <ul>
+          <li class="pure-menu-selected"><a href="#">Home</a></li>
+          <li><a href="#">New Paste</a></li>
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Sign up</a></li>
+          <li><a href="#">Logout</a></li>
+      </ul>
+  </div>
+</div>
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>
