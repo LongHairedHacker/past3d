@@ -41,6 +41,12 @@
   border-color: #eeeeee;
   border-radius: 3px;
   background-color: #eee; }
+  .textcontainer .pure-form label {
+    font-weight: bold;
+    border-bottom: 1px solid #ccc; }
+  .textcontainer .pure-form .errorlist {
+    list-style: none;
+    color: #e9322d; }
 
 .button-green {
   background-color: #1CB841;

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %} {{ geometry.name }} {% endblock %}
+
 {% block headeraddons %}
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
   	<style>
@@ -108,7 +110,11 @@
           <i class="icon-user"> </i><b>by:</b>
         </div>
         <div class="pure-u-2-3">
-            {{geometry.user.username}}
+            {% if geometry.user %}
+              {{geometry.user.username}}
+            {% else %}
+              Anonymous
+            {% endif %}
         </div>
       </div>
       <div class="pure-g-r">

@@ -31,7 +31,7 @@ def safe_upload_path(base_dir):
 class Geometry(models.Model):
 	name = models.CharField(max_length = 128)
 	description = models.TextField(blank=True)
-	user = models.ForeignKey(User, blank=True)
+	user = models.ForeignKey(User, blank=True, null=True)
 	date = models.DateTimeField(auto_now_add=True)
 	polycount = models.IntegerField(blank=True, default=0)
 	width = models.FloatField(blank=True, default=0)

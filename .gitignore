@@ -1,3 +1,4 @@
 *.pyc
 *.sqlite
 media/*
+static_common/css/.sass-cache/*
