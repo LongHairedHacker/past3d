@@ -1,6 +1,32 @@
 {% extends "base.html" %}
 
+
 {% block title %} New paste {% endblock %}
+
+
+{% block headeraddons %}
+<script src="{{STATIC_URL}}js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("input[type='file']").each(function () {
+        $(this).hide();
+        $(this).after(' <a href="#" class="browsebutton pure-button button-lightblue">Browse</a>');
+        $(this).after('<input type="text" readonly/>'); 
+    
+        $(this).change(function() {
+            $(this).next().val($(this).val());
+        });
+    });
+
+    $(".browsebutton").click(function() {
+        console.log("foo");
+        $(this).prev().prev().click();
+    });
+});
+
+</script>
+{% endblock %}
+
 
 {% block content %}
 <div id="content">

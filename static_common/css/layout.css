@@ -47,6 +47,8 @@
   .textcontainer .pure-form .errorlist {
     list-style: none;
     color: #e9322d; }
+  .textcontainer .pure-form .browsebutton {
+    font-size: 85%; }
 
 .button-green {
   background-color: #1CB841;
