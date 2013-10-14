@@ -3,7 +3,7 @@ import struct
 import re
 
 from hashlib import md5
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -29,16 +29,44 @@ def safe_upload_path(base_dir):
 
 
 class Geometry(models.Model):
+
+	HOUR = 0
+	DAY = 1
+	WEEK = 2
+	MONTH = 3
+	FORERVER = 4
+
+	EXPIRATION_CHOICES = ((HOUR, 'one hour'),
+						(DAY, 'one day'),
+						(WEEK, 'one week'),
+						(MONTH, 'one month'),
+						(FORERVER, 'forever'))
+
+	DELTAS = { HOUR : timedelta(hours = 1),
+				DAY : timedelta(days = 1),
+				WEEK : timedelta(weeks = 1),
+				MONTH : timedelta(weeks = 4)}
+
 	name = models.CharField(max_length = 128)
 	description = models.TextField(blank=True)
 	user = models.ForeignKey(User, blank=True, null=True)
 	date = models.DateTimeField(auto_now_add=True)
+	expiration = models.IntegerField(default = 0, choices = EXPIRATION_CHOICES)
+	public = models.BooleanField(default=True)
 	polycount = models.IntegerField(blank=True, default=0)
 	width = models.FloatField(blank=True, default=0)
 	depth = models.FloatField(blank=True, default=0)
 	height = models.FloatField(blank=True, default=0)
 	file = models.FileField(upload_to=safe_upload_path('models'))
 	sourcefile = models.FileField(upload_to=safe_upload_path('sources'), blank=True)
+
+	def get_expiration_date(self):
+		for expiration in [self.HOUR, self.DAY, self.WEEK, self.MONTH]:
+			if self.expiration == expiration:
+				return self.date + self.DELTAS[expiration]
+
+		return None
+
 
 	def _generate_meta_infos(self):
 		print "Generating metainfos %s" % self.name
@@ -108,6 +136,8 @@ class Geometry(models.Model):
 		self.depth = max_coord[1] - min_coord[1]
 		self.height = max_coord[2] - min_coord[2]	
 		self.polycount = count
+
+		self.save()
 
 	def get_polycount(self):
 		if self.polycount == 0:

@@ -6,4 +6,4 @@ from models import Geometry
 class GeometryForm(ModelForm):
 	class Meta:
 		model = Geometry
-		fields = ['name', 'description', 'file', 'sourcefile']
+		fields = ['name', 'description', 'public', 'expiration',  'file', 'sourcefile']
