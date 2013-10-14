@@ -41,6 +41,10 @@
   border-color: #eeeeee;
   border-radius: 3px;
   background-color: #eee; }
+  .textcontainer .uploads-list {
+    list-style: none; }
+    .textcontainer .uploads-list a {
+      text-decoration: none; }
   .textcontainer .pure-form label {
     font-weight: bold;
     border-bottom: 1px solid #ccc; }

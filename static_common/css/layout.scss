@@ -54,6 +54,14 @@
 	@include roundconers(#eee,6px);
 	background-color: #eee;
 
+	.uploads-list {
+		list-style: none;
+
+		a {
+			text-decoration: none;
+		}
+	}
+
 	.pure-form {
 		label {
 			font-weight: bold;

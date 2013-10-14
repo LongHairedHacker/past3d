@@ -6,6 +6,7 @@ from hashlib import md5
 from datetime import datetime, timedelta
 
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.db import models
 
 vertex_pattern = re.compile(r'vertex\s+([0-9.e+-]+)\s+([0-9.e+-]+)\s+([0-9.e+-]+)')
@@ -59,6 +60,13 @@ class Geometry(models.Model):
 	height = models.FloatField(blank=True, default=0)
 	file = models.FileField(upload_to=safe_upload_path('models'))
 	sourcefile = models.FileField(upload_to=safe_upload_path('sources'), blank=True)
+
+	def get_absolute_url(self):
+		return reverse('geometry_details', kwargs={'id' : self.pk})
+
+	@classmethod
+	def get_latest(cls):
+		return cls.objects.all().filter(public = True).order_by('date')[:10]
 
 	def get_expiration_date(self):
 		for expiration in [self.HOUR, self.DAY, self.WEEK, self.MONTH]:
