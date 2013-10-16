@@ -1,4 +1,5 @@
 # Django settings for past3d project.
+from django.core.urlresolvers import reverse_lazy
 
 import os
 BASE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../')
@@ -127,6 +128,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pastebin',
+    'users',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -134,6 +136,8 @@ INSTALLED_APPS = (
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+
+LOGIN_REDIRECT_URL = reverse_lazy('geometry_create')
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

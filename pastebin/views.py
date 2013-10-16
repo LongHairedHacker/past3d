@@ -7,6 +7,13 @@ from forms import GeometryForm
 from models import Geometry
 
 
+class LastesGeometriesMixin(ContextMixin):
+	def get_context_data(self, **kwargs):
+		context = super(LastesGeometriesMixin, self).get_context_data(**kwargs)
+		context['latest_geometries'] = Geometry.get_latest()
+		return context
+
+
 class GeometryView(DetailView):
 	model = Geometry
 	pk_url_kwarg = 'id'
@@ -14,7 +21,7 @@ class GeometryView(DetailView):
 	template_name = 'pastebin/geometry.html'
 
 
-class GeometryCreate(CreateView):
+class GeometryCreate(CreateView, LastesGeometriesMixin):
     model = Geometry
     form_class = GeometryForm
     template_name = 'pastebin/geometry_create.html'
@@ -22,7 +29,3 @@ class GeometryCreate(CreateView):
     def get_success_url(self):
     	return reverse('geometry_details', kwargs={'id' :self.object.id})
 
-    def get_context_data(self, **kwargs):
-		context = super(CreateView, self).get_context_data(**kwargs)
-		context['latest_geometries'] = Geometry.get_latest()
-		return context

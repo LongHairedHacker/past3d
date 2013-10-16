@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'past3d.views.home', name='home'),
     # url(r'^past3d/', include('past3d.foo.urls')),
 
+	url(r'^users/', include('users.urls')),
     url(r'^3d/', include('pastebin.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
