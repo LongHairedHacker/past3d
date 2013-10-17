@@ -20,7 +20,11 @@
 	<div class="pure-g-r">
 		<div class="pure-u-2-3">
     		<div class="textcontainer">
-    			<form method="post" class="pure-form pure-form-aligned">
+    			{% if user.is_authenticated %}
+          You are already logged in !<br/>
+          Did you mean: <a href="{% url 'logout' %}">logout</a> ?
+          {% else %}
+          <form method="post" class="pure-form pure-form-aligned">
             {% csrf_token %}
             <fieldset>
               {% for field in form %}
@@ -35,6 +39,8 @@
                 <input  class="pure-button button-green" id="submitbutton" type="submit" value="Login" />
               </div>
             </fieldset>
+          </form>
+          {% endif %}
     		</div>
   		</div>
   		<div class="pure-u-1-3">
