@@ -1,7 +1,0 @@
-Hello {{user.username}},
-and thank you for registering an account at {{site_name}}.
-
-To validate your email address and complete the registration you need to visit this link:
-{{validation_link}}
-
-Have fun !

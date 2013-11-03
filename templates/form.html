@@ -1,0 +1,17 @@
+<form {% if form_enctype %}enctype="{{form_enctype}}"{% endif %} 
+        method="post" class="pure-form pure-form-aligned">
+    {% csrf_token %}
+    <fieldset>
+        {% for field in form %}
+            <div class="pure-control-group">
+                {{ field.label_tag }} 
+                {{ field }}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+        <div class="pure-control-group">
+            <label for="submitbutton" >... and </label>
+            <input  class="pure-button button-green" id="submitbutton" type="submit" value="{{button_text}}" />
+        </div>
+    </fieldset>
+</form>

@@ -15,4 +15,10 @@ urlpatterns = patterns('',
 														name='login'),
 	url(r'^logout/$', 'django.contrib.auth.views.logout',{'extra_context' : {'latest_geometries' : Geometry.get_latest()},
 														'next_page' : reverse_lazy('login')}, 
-														name='logout'),)
+														name='logout'),
+
+	url(r'^password/change/$', 'django.contrib.auth.views.password_change',{'extra_context' : {'latest_geometries' : Geometry.get_latest()},
+														'template_name' : 'users/password_change.html',
+														'post_change_redirect' : reverse_lazy('login')}, 
+														name='password_change'),
+	)

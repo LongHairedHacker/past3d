@@ -1,0 +1,12 @@
+<div class="textcontainer">
+  <h2><i class="icon-upload-alt"></i> Latest uploads</h2>
+  <ul class="uploads-list">
+    {% for geometry in latest_geometries %}
+      <li>
+        <i class="icon-file"></i>
+        <a href="{{geometry.get_absolute_url}}">{{geometry.name}}</a> 
+        - {{geometry.date}}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
