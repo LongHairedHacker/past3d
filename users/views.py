@@ -1,4 +1,4 @@
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.base import TemplateView
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
@@ -7,18 +7,33 @@ from django.contrib.auth.tokens import default_token_generator
 from django.template import loader
 from django.utils.http import int_to_base36
 from django.http import  Http404
+from django.core.exceptions import PermissionDenied
 
 from pastebin.views import LastesGeometriesMixin
 
-from forms import UserCreateForm
+from forms import UserCreateForm, UserUpdateForm
 
-class UserCreate(CreateView, LastesGeometriesMixin):
+class UserCreateView(CreateView, LastesGeometriesMixin):
 	model = User
 	form_class = UserCreateForm
 	template_name = 'users/signup.html'
 
+
 	def get_success_url(self):
 		return reverse('send_confirmation', kwargs={'user_id' : self.object.pk})
+
+
+class UserUpdateView(UpdateView, LastesGeometriesMixin):
+	model = User
+	form_class = UserUpdateForm
+	template_name = 'users/user_update.html'
+	pk_url_kwarg = 'user_id'
+
+	def get_queryset(self):
+		return self.model.objects.filter(id=self.request.user.id)
+
+	def get_success_url(self):
+		return reverse('geometry_create')
 
 
 

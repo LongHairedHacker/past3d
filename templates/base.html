@@ -23,6 +23,7 @@
           <li ><a href="#">Home</a></li>
           <li><a href="{% url 'geometry_create' %}">New Paste</a></li>
           {% if user.is_authenticated %}
+            <li><a href="{% url 'user_update' user_id=user.pk %}">Account</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
           {% else %}
             <li><a href="{% url 'login' %}">Login</a></li>
