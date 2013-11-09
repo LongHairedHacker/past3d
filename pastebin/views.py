@@ -1,7 +1,9 @@
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.core.urlresolvers import reverse
 from django.views.generic.base import ContextMixin
+from django.core.exceptions import PermissionDenied
+
 
 from forms import GeometryForm, AnonymousGeometryForm
 from models import Geometry
@@ -42,3 +44,22 @@ class GeometryCreate(CreateView, LastesGeometriesMixin):
     		self.object.save()
 
     	return res
+
+class GeometryDelete(DeleteView, LastesGeometriesMixin):
+    model = Geometry
+    pk_url_kwarg = 'id'
+    template_name = 'pastebin/geometry_delete.html'
+    success_url ='/'
+
+    def check_user(self, request):
+        obj = self.get_object()
+        if obj.user and obj.user.id != request.user.id:
+            raise PermissionDenied
+
+    def get(self, request, *args, **kwargs):
+        self.check_user(request)
+        return super(GeometryDelete,self).get(self, request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        self.check_user(request)
+        return super(GeometryDelete,self).delete(self, request, *args, **kwargs)

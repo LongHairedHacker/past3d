@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+
+{% block title %} New paste {% endblock %}
+
+
+{% block headeraddons %}
+<script src="{{STATIC_URL}}js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("input[type='file']").each(function () {
+        $(this).hide();
+        $(this).after(' <a href="#" class="browsebutton pure-button button-lightblue">Browse</a>');
+        $(this).after('<input type="text" readonly/>'); 
+    
+        $(this).change(function() {
+            $(this).next().val($(this).val());
+        });
+    });
+
+    $(".browsebutton").click(function() {
+        $(this).prev().prev().click();
+    });
+});
+
+</script>
+{% endblock %}
+
+
+{% block content %}
+<div id="content">
+	<div id="prompt">
+  		<!-- if IE without GCF, prompt goes here -->
+	</div>
+	
+	<h1>New paste</h1>
+	<div class="pure-g-r">
+		<div class="pure-u-2-3">
+    		<div class="textcontainer">
+          <form action="" method="post">
+            {% csrf_token %}
+            Are you sure you want to delete <b>{{ object.name }}</b>?<br/>
+            The deletion can never be undone so be carefull now !</br>
+            <br/>
+            <button type="submit" class="pure-button button-red">
+              <i class="icon-remove-circle"></i>
+              Delete
+            </button>
+            <a class="pure-button button-green" href="{% url 'geometry_details' id=object.id %}">
+              Abort
+            </a>
+          </form>
+    		</div>
+  		</div>
+  		<div class="pure-u-1-3">
+         {% include 'pastebin/latest_geometries.html' %}
+  		</div>
+	</div>
+</div>
+{% endblock %}

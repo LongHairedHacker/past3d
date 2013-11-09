@@ -42,7 +42,7 @@
 	@include gridcontainer;
 	@include roundconers(#eee,6px);
 	background-color: #eee;
-	height: 60%;
+	min-height: 60%;
 
 	.pure-button {
 		margin: 2px;
@@ -91,6 +91,11 @@
 
 .button-green {
 	background-color: #1CB841;
+	color: #ffffff;
+}
+
+.button-red {
+	background-color: #ca3c3c;
 	color: #ffffff;
 }
 

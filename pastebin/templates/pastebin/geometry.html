@@ -167,12 +167,16 @@
             {{geometry.get_depth}}
         </div>
       </div>
-    
+
       <h2><i class="icon-download-alt"></i> Downloads</h2>
       <a class="pure-button button-green" href="{{geometry.file.url}}"><i class="icon-download"></i> Download Model</a><br/> 
       {% if geometry.sourcefile %}
       <a class="pure-button button-lightblue" href="{{geometry.sourcefile.url}}"><i class="icon-edit-sign"></i> Download Source</a>
       {% endif %}
+      {% if user.is_authenticated and user.id = geometry.user.id %}
+        <h2><i class="icon-trash"></i> Delete</h2>
+        <a class="pure-button button-red" href="{% url 'geometry_delete' id=geometry.id %}"><i class="icon-remove-circle"></i> Delete model</a><br/>
+      {% endif %} 
     </div>
   </div>
 </div>
