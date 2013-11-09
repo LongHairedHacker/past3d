@@ -53,6 +53,10 @@
 	@include gridcontainer;
 	@include roundconers(#eee,6px);
 	background-color: #eee;
+	padding:{
+			top: 4px;
+			left: 4px;
+	}
 
 	.uploads-list {
 		list-style: none;
@@ -76,6 +80,11 @@
 		.browsebutton {
 			font-size: 85%;
 		}
+	}
+
+	.resetlink {
+		font-size: 75%;
+		text-decoration: none;
 	}
 }
 

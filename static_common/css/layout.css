@@ -40,7 +40,9 @@
   border-style: solid;
   border-color: #eeeeee;
   border-radius: 3px;
-  background-color: #eee; }
+  background-color: #eee;
+  padding-top: 4px;
+  padding-left: 4px; }
   .textcontainer .uploads-list {
     list-style: none; }
     .textcontainer .uploads-list a {
@@ -53,6 +55,9 @@
     color: #e9322d; }
   .textcontainer .pure-form .browsebutton {
     font-size: 85%; }
+  .textcontainer .resetlink {
+    font-size: 75%;
+    text-decoration: none; }
 
 .button-green {
   background-color: #1CB841;
