@@ -10,6 +10,8 @@
 	margin-bottom: 0 px;
 }
 
+
+
 @mixin gridcontainer {
 	margin: {
 		top: 4px;
@@ -58,12 +60,23 @@
 			left: 4px;
 	}
 
+	a {
+		text-decoration: none;
+		color: #1947D1;
+
+		&:visited {
+			color: #4C5B89;
+		}
+
+		&:hover {
+			color: #7E98E5;
+		}
+	}
+
 	.uploads-list {
 		list-style: none;
 
-		a {
-			text-decoration: none;
-		}
+
 	}
 
 	.pure-form {

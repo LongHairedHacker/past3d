@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+
+{% block title %} Welcome to pat3d {% endblock %}
+
+
+{% block headeraddons %}
+
+{% endblock %}
+
+
+{% block content %}
+<div id="content">
+  <h1>Welcome to past3d</h1>
+  <div class="pure-g-r">
+    <div class="pure-u-2-3">
+        <div class="textcontainer">
+          <h2>What ?</h2>
+          Past3d is similar to
+          <a href="http://en.wikipedia.org/wiki/Pastebin">a pastebin</a>
+          or 
+          <a href="http://en.wikipedia.org/wiki/Image_hosting_service">a image hoster</a>.
+          Instead of hosting your config file, ssh private keys or funny cat photos,
+          it can host your <b>3D models</b>.<br/>
+          Even more impotant: <b>Using WebGL it can view the model directly in your browser.</b>
+
+          <h2>Features</h2>
+          <ul>
+            <li>Supports Binary and ASCII STL</li>
+            <li>Renders Geometries in any browser capable of webGL</li>
+            <li>Public an private pastes</li>
+            <li>Simple to use</li>
+            <li>No registration required</li>
+            <li>Registred users can delete their uploaded models at any time</li>
+            <li>Models uploaded by registred user stay online indefinitely</li>
+          </ul>
+          <i>Private</i> only means that past3d will not show the link to anyone else.
+          Whereas a public paste can be shown at various places on this site,
+          e.g. the Latest Uploads sidebar.
+          <br/>
+          <br/>
+          Also note that as an unregistered user your models will only stay online for a limited time span (up to one month maximum).<br/>
+          <br/>
+          Using a special licence for your models is not required,
+          but you can specify anything you like in the description field.
+
+          <h2>Want to try it out ?</h2>
+          Simply clickt the <a href="{% url 'geometry_create' %}">New paste</a> button on top of
+          this page.<br/>
+          As an unregistered user your models will only stay online for a limited time span.<br/>
+          So you might want to <a href="{% url 'signup' %}">register</a> first. 
+          Registered users can upload models that stay online forever (well... let's say for a long time if nothing goes terribly wrong).<br/>
+
+          <h2>Want to roll your own ?</h2>
+          past3d is completly open source.<br/>
+          Just head over to <a href="https://github.com/LongHairedHacker/past3d">github</a>,
+          download the latest version und start your own 3D enabled pastebin.
+          All you need is server running python and django.<br/>
+          Also if you think this site misses an important feature,
+          fork the repo implement the feature and send me a pull request.</br>
+        </div>
+      </div>
+      <div class="pure-u-1-3">
+         {% include 'pastebin/latest_geometries.html' %}
+      </div>
+  </div>
+</div>
+{% endblock %}

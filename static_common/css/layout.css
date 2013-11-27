@@ -43,10 +43,15 @@
   background-color: #eee;
   padding-top: 4px;
   padding-left: 4px; }
+  .textcontainer a {
+    text-decoration: none;
+    color: #1947D1; }
+    .textcontainer a:visited {
+      color: #4C5B89; }
+    .textcontainer a:hover {
+      color: #7E98E5; }
   .textcontainer .uploads-list {
     list-style: none; }
-    .textcontainer .uploads-list a {
-      text-decoration: none; }
   .textcontainer .pure-form label {
     font-weight: bold;
     border-bottom: 1px solid #ccc; }

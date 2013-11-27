@@ -3,6 +3,7 @@ from django.views.generic.detail import DetailView
 from django.core.urlresolvers import reverse
 from django.views.generic.base import ContextMixin
 from django.core.exceptions import PermissionDenied
+from django.views.generic.base import TemplateView
 
 
 from forms import GeometryForm, AnonymousGeometryForm
