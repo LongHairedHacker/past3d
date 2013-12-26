@@ -9,8 +9,6 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.db import models
 
-
-
 vertex_pattern = re.compile(r'vertex\s+([0-9.e+-]+)\s+([0-9.e+-]+)\s+([0-9.e+-]+)')
 
 def safe_upload_path(base_dir):
