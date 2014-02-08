@@ -20,10 +20,8 @@ class STLUploadForm(ModelForm):
 		stlfile = self.cleaned_data.get("file")
 		stlfile.open()
 
-		print dir(stlfile)
-
 		if 	stlfile.read(5) != "solid":
-			print "binary"
+			#print "binary"
 			#Skip header
 			stlfile.seek(80)
 			count = struct.unpack("i",stlfile.read(4))[0]
@@ -31,7 +29,7 @@ class STLUploadForm(ModelForm):
 				raise forms.ValidationError("Not a valid binary STL file.")
 
 		else:
-			print "ascii"	
+			#print "ascii"	
 			next_patterns = [facet_pattern]
 			stlfile.readline()
 			line = stlfile.readline().strip()

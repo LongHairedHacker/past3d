@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+
+{% block title %} All public pastes{% endblock %}
+
+
+{% block headeraddons %}
+
+{% endblock %}
+
+
+{% block content %}
+<div id="content">
+  <div id="prompt">
+      <!-- if IE without GCF, prompt goes here -->
+  </div>
+  
+  <h1>All public pastes</h1>
+  <div class="pure-g-r">
+    <div class="pure-u-2-3">
+        <div class="textcontainer">
+        
+        <table class="pure-table pure-table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Uploader</th>
+              <th>Size (w x h x d)</th>
+              <th>Polygons</th>
+              <th>Expires</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+        {% for geometry in geometries %}
+          <tr {% cycle '' 'class="odd-row"' %}>
+            <td><a href="{{geometry.get_absolute_url}}">{{geometry.name}}</a></td>
+            <td>
+              {% if geometry.user %}
+                {{geometry.user.username}}
+              {% else %}
+                Anonymous
+              {% endif %}
+            </td>
+            <td>{{geometry.get_width}} x {{geometry.get_height}} x {{geometry.get_depth}}</td>
+            <td>{{geometry.get_polycount}}</td>
+            <td>
+                {% if geometry.get_expiration_date %}
+                  {{ geometry.get_expiration_date|timeuntil}}
+                {% else %}
+                  never
+                {% endif %}
+            </td>
+            <td>{{geometry.date}}</td>
+          </tr>
+        {% endfor %}
+        </table>
+        <br/>
+        <br/>
+        {% if geometries.has_previous %}
+          <a href="?page={{ geometries.previous_page_number }}">previous... </a>
+        {% endif %}
+
+        {% if  geometries.number %}
+          Page {{ geometries.number }} of {{ geometries.paginator.num_pages }}
+        {% endif %}
+
+        {% if geometries.has_next %}
+          <a href="?page={{ geometries.next_page_number }}"> ..next</a>
+        {% endif %}
+        </div>
+      </div>
+      <div class="pure-u-1-3">
+         {% include 'pastebin/latest_geometries.html' %}
+      </div>
+  </div>
+</div>
+{% endblock %}
+

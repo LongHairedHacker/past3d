@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic.base import ContextMixin
 from django.core.exceptions import PermissionDenied
 from django.views.generic.base import TemplateView
-
+from django.views.generic.list import ListView
 
 from forms import GeometryForm, AnonymousGeometryForm
 from models import Geometry
@@ -15,6 +15,14 @@ class LastesGeometriesMixin(ContextMixin):
 		context = super(LastesGeometriesMixin, self).get_context_data(**kwargs)
 		context['latest_geometries'] = Geometry.get_latest()
 		return context
+
+class GeometryListView(ListView, LastesGeometriesMixin):
+     model = Geometry
+     paginate_by = 50
+     paginate_orphans = 25
+     page_kwarg = 'page'
+     context_object_name = 'geometries'
+     template_name = 'pastebin/geometry_list.html'
 
 
 class GeometryView(DetailView):

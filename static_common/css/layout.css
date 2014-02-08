@@ -60,27 +60,10 @@ body {
       color: #4C5B89; }
     .textcontainer a:hover {
       color: #7E98E5; }
-  .textcontainer .button-green {
-    color: white;
-    background-color: #1CB841; }
-    .textcontainer .button-green:visited {
-      color: white; }
-    .textcontainer .button-green:hover {
-      color: white; }
-  .textcontainer .button-red {
-    color: white;
-    background-color: #ca3c3c; }
-    .textcontainer .button-red:visited {
-      color: white; }
-    .textcontainer .button-red:hover {
-      color: white; }
-  .textcontainer .button-lightblue {
-    color: white;
-    background-color: #42B8DD; }
-    .textcontainer .button-lightblue:visited {
-      color: white; }
-    .textcontainer .button-lightblue:hover {
-      color: white; }
+  .textcontainer table {
+    background-color: #ffffff; }
+    .textcontainer table .odd-row {
+      background-color: #e4eef2; }
   .textcontainer .uploads-list {
     list-style: none; }
   .textcontainer .pure-form label {
@@ -94,3 +77,27 @@ body {
   .textcontainer .resetlink {
     font-size: 75%;
     text-decoration: none; }
+
+#fileinfos .button-green, .textcontainer .button-green {
+  color: white;
+  background-color: #1CB841; }
+  #fileinfos .button-green:visited, .textcontainer .button-green:visited {
+    color: white; }
+  #fileinfos .button-green:hover, .textcontainer .button-green:hover {
+    color: white; }
+
+#fileinfos .button-red, .textcontainer .button-red {
+  color: white;
+  background-color: #ca3c3c; }
+  #fileinfos .button-red:visited, .textcontainer .button-red:visited {
+    color: white; }
+  #fileinfos .button-red:hover, .textcontainer .button-red:hover {
+    color: white; }
+
+#fileinfos .button-lightblue, .textcontainer .button-lightblue {
+  color: white;
+  background-color: #42B8DD; }
+  #fileinfos .button-lightblue:visited, .textcontainer .button-lightblue:visited {
+    color: white; }
+  #fileinfos .button-lightblue:hover, .textcontainer .button-lightblue:hover {
+    color: white; }

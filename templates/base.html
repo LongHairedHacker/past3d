@@ -22,6 +22,7 @@
       <ul>
           <li><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'geometry_create' %}">New Paste</a></li>
+          <li><a href="{% url 'geometry_list' %}">Public Pastes</a></li>
           {% if user.is_authenticated %}
             <li><a href="{% url 'user_update' user_id=user.pk %}">Account</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>

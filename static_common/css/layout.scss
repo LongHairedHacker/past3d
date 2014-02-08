@@ -100,23 +100,13 @@ body{
 		}
 	}
 
+	table {
+		background-color: #ffffff;
 
-	.button-green {
-		@include fixlinkcolor(#ffffff);
-		background-color: #1CB841;
-		
+		.odd-row {
+			background-color: #e4eef2;
+		}
 	}
-
-	.button-red {
-		@include fixlinkcolor(#ffffff);
-		background-color: #ca3c3c;
-	}
-
-	.button-lightblue {
-		@include fixlinkcolor(#ffffff);
-		background-color: #42B8DD;
-	}
-
 
 	.uploads-list {
 		list-style: none;
@@ -142,6 +132,21 @@ body{
 		font-size: 75%;
 		text-decoration: none;
 	}
+}
+
+#fileinfos .button-green, .textcontainer  .button-green {
+	@include fixlinkcolor(#ffffff);
+	background-color: #1CB841;
+}
+
+#fileinfos .button-red, .textcontainer .button-red {
+	@include fixlinkcolor(#ffffff);
+	background-color: #ca3c3c;
+}
+
+#fileinfos .button-lightblue, .textcontainer .button-lightblue {
+	@include fixlinkcolor(#ffffff);
+	background-color: #42B8DD;
 }
 
 
