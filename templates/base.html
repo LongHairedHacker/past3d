@@ -20,7 +20,7 @@
       <a href="{% url 'home' %}" class="pure-menu-heading">past3d</a>
 
       <ul>
-          <li ><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'geometry_create' %}">New Paste</a></li>
           {% if user.is_authenticated %}
             <li><a href="{% url 'user_update' user_id=user.pk %}">Account</a></li>
