@@ -68,7 +68,8 @@ class STLUploadForm(ModelForm):
 			if matched_pattern != endsolid_pattern:
 				raise forms.ValidationError("Not a valid ascii STL file.")
 
-		stlfile.close()
+		# see https://code.djangoproject.com/ticket/20020
+		# stlfile.close()
 		return stlfile
 
 
