@@ -17,12 +17,12 @@ class LastesGeometriesMixin(ContextMixin):
 		return context
 
 class GeometryListView(ListView, LastesGeometriesMixin):
-     model = Geometry
-     paginate_by = 50
-     paginate_orphans = 25
-     page_kwarg = 'page'
-     context_object_name = 'geometries'
-     template_name = 'pastebin/geometry_list.html'
+    queryset = Geometry.objects.all().filter(public = True).order_by('date')
+    paginate_by = 50
+    paginate_orphans = 25
+    page_kwarg = 'page'
+    context_object_name = 'geometries'
+    template_name = 'pastebin/geometry_list.html'
 
 
 class GeometryView(DetailView):
