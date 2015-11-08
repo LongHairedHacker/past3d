@@ -6,7 +6,8 @@
   font-style: normal; }
 
 body {
-  font-family: "DejaVu Sans"; }
+  font-family: "DejaVu Sans";
+  font-size: 14px; }
 
 #header {
   margin: 5px;
@@ -22,7 +23,7 @@ body {
   margin-right: 4px;
   border-width: 6px;
   border-style: solid;
-  border-color: #eeeeee;
+  border-color: #eee;
   border-radius: 3px;
   background-color: #eee;
   height: 60%; }
@@ -36,7 +37,7 @@ body {
   margin-right: 4px;
   border-width: 6px;
   border-style: solid;
-  border-color: #eeeeee;
+  border-color: #eee;
   border-radius: 3px;
   background-color: #eee;
   min-height: 60%; }
@@ -48,7 +49,7 @@ body {
   margin-right: 4px;
   border-width: 6px;
   border-style: solid;
-  border-color: #eeeeee;
+  border-color: #eee;
   border-radius: 3px;
   background-color: #eee;
   padding-top: 4px;
@@ -62,6 +63,8 @@ body {
       color: #7E98E5; }
   .textcontainer table {
     background-color: #ffffff; }
+    .textcontainer table td {
+      font-size: 13px; }
     .textcontainer table .odd-row {
       background-color: #e4eef2; }
   .textcontainer .uploads-list {
@@ -79,25 +82,25 @@ body {
     text-decoration: none; }
 
 #fileinfos .button-green, .textcontainer .button-green {
-  color: white;
+  color: #ffffff;
   background-color: #1CB841; }
   #fileinfos .button-green:visited, .textcontainer .button-green:visited {
-    color: white; }
+    color: #ffffff; }
   #fileinfos .button-green:hover, .textcontainer .button-green:hover {
-    color: white; }
+    color: #ffffff; }
 
 #fileinfos .button-red, .textcontainer .button-red {
-  color: white;
+  color: #ffffff;
   background-color: #ca3c3c; }
   #fileinfos .button-red:visited, .textcontainer .button-red:visited {
-    color: white; }
+    color: #ffffff; }
   #fileinfos .button-red:hover, .textcontainer .button-red:hover {
-    color: white; }
+    color: #ffffff; }
 
 #fileinfos .button-lightblue, .textcontainer .button-lightblue {
-  color: white;
+  color: #ffffff;
   background-color: #42B8DD; }
   #fileinfos .button-lightblue:visited, .textcontainer .button-lightblue:visited {
-    color: white; }
+    color: #ffffff; }
   #fileinfos .button-lightblue:hover, .textcontainer .button-lightblue:hover {
-    color: white; }
+    color: #ffffff; }

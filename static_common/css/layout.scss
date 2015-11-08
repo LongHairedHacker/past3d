@@ -11,6 +11,7 @@
 
 body{
 	font-family: "DejaVu Sans";
+	font-size: 14px;
 }
 
 
@@ -38,7 +39,7 @@ body{
 	border: {
 		width: $radius;
 		style: solid;
-		color: $color; 
+		color: $color;
 		radius: $radius/2;
 	}
 }
@@ -103,6 +104,10 @@ body{
 	table {
 		background-color: #ffffff;
 
+		td {
+			font-size: 13px;
+		}
+
 		.odd-row {
 			background-color: #e4eef2;
 		}
@@ -148,5 +153,3 @@ body{
 	@include fixlinkcolor(#ffffff);
 	background-color: #42B8DD;
 }
-
-

@@ -14,18 +14,21 @@
   <div id="prompt">
       <!-- if IE without GCF, prompt goes here -->
   </div>
-  
+
   <h1>All public pastes</h1>
   <div class="pure-g-r">
     <div class="pure-u-2-3">
         <div class="textcontainer">
-        
+
         <table class="pure-table pure-table-bordered">
           <thead>
             <tr>
               <th>Name</th>
               <th>Uploader</th>
-              <th>Size (w x h x d)</th>
+              <th>
+                  Size<br/>
+                  (w x h x d)
+              </th>
               <th>Polygons</th>
               <th>Expires</th>
               <th>Date</th>
@@ -41,7 +44,10 @@
                 Anonymous
               {% endif %}
             </td>
-            <td>{{geometry.get_width}} x {{geometry.get_height}} x {{geometry.get_depth}}</td>
+            <td>{{geometry.get_width | floatformat}}
+                x {{geometry.get_height | floatformat}}
+                x {{geometry.get_depth | floatformat}}
+            </td>
             <td>{{geometry.get_polycount}}</td>
             <td>
                 {% if geometry.get_expiration_date %}
@@ -75,4 +81,3 @@
   </div>
 </div>
 {% endblock %}
-

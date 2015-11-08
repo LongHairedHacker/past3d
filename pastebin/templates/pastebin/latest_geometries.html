@@ -4,8 +4,8 @@
     {% for geometry in latest_geometries %}
       <li>
         <i class="icon-file"></i>
-        <a href="{{geometry.get_absolute_url}}">{{geometry.name}}</a> 
-        - {{geometry.date}}
+        <a href="{{geometry.get_absolute_url}}">{{geometry.name}}</a><br/>
+        {{geometry.date}}
       </li>
     {% endfor %}
   </ul>
