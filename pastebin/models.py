@@ -12,14 +12,14 @@ from django.db import models
 vertex_pattern = re.compile(r'vertex\s+([0-9.e+-]+)\s+([0-9.e+-]+)\s+([0-9.e+-]+)')
 
 def safe_upload_path(base_dir):
-	
+
 	def generate_path(instance, filename):
 
 		ext = os.path.splitext(filename)[1]
 
 		md5sum = md5()
-		md5sum.update(instance.name 
-			+ str(datetime.now()) 
+		md5sum.update(instance.name
+			+ str(datetime.now())
 			+ filename)
 		randomname = md5sum.hexdigest()
 
@@ -66,7 +66,7 @@ class Geometry(models.Model):
 
 	@classmethod
 	def get_latest(cls):
-		return cls.objects.all().filter(public = True).order_by('date')[:10]
+		return cls.objects.all().filter(public = True).order_by('-date')[:10]
 
 	def get_expiration_date(self):
 		for expiration in [self.HOUR, self.DAY, self.WEEK, self.MONTH]:
@@ -83,13 +83,13 @@ class Geometry(models.Model):
 
 		count = 0
 		min_coord = [None,None,None]
-		max_coord = [None,None,None]	
+		max_coord = [None,None,None]
 
 		if self.file.read(5) != "solid":
 			print "binary"
 			#Skip header
 			self.file.seek(80)
-			count = struct.unpack("i",self.file.read(4))[0]	
+			count = struct.unpack("i",self.file.read(4))[0]
 
 			done = False
 			for pos in range(0,count):
@@ -97,24 +97,24 @@ class Geometry(models.Model):
 				self.file.seek(self.file.tell()+3*4)
 				#Loop over each coordinate
 				for vert in range(0,3):
-					# Loop over each coordinate 
+					# Loop over each coordinate
 					for i in range(0,3):
-						x = struct.unpack("<f",self.file.read(4))[0]	
+						x = struct.unpack("<f",self.file.read(4))[0]
 
 						if min_coord[i] != None :
 							min_coord[i] = min(min_coord[i], x)
 						else:
 							min_coord[i] = x
-						
+
 						if max_coord[i] != None :
 							max_coord[i] = max(max_coord[i], x)
 						else:
 							max_coord[i] = x
-				#Skip attributes (16bit) 
-				self.file.seek(self.file.tell()+2)	
+				#Skip attributes (16bit)
+				self.file.seek(self.file.tell()+2)
 
 		else:
-			print "ascii"		
+			print "ascii"
 
 			line = self.file.readline()
 			while line != "":
@@ -124,25 +124,25 @@ class Geometry(models.Model):
 				if line.startswith("vertex"):
 					coords = vertex_pattern.match(line).groups();
 					for i in range(0,3):
-						x = float(coords[i])	
+						x = float(coords[i])
 
 						if min_coord[i] != None :
 							min_coord[i] = min(min_coord[i], x)
 						else:
 							min_coord[i] = x
-						
+
 						if max_coord[i] != None :
 							max_coord[i] = max(max_coord[i], x)
 						else:
-							max_coord[i] = x	
+							max_coord[i] = x
 
 				line = self.file.readline()
 
 		self.file.close()
-			
+
 		self.width = max_coord[0] - min_coord[0]
 		self.depth = max_coord[1] - min_coord[1]
-		self.height = max_coord[2] - min_coord[2]	
+		self.height = max_coord[2] - min_coord[2]
 		self.polycount = count
 
 		self.save()
@@ -166,5 +166,3 @@ class Geometry(models.Model):
 		if self.polycount == 0:
 			self._generate_meta_infos()
 		return self.height
-
-
