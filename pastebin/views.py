@@ -42,7 +42,7 @@ class GeometryCreate(CreateView, LastesGeometriesMixin):
         return reverse('geometry_details', kwargs={'id': self.object.id})
 
     def get_form_class(self):
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             return GeometryForm
         else:
             return AnonymousGeometryForm
@@ -50,7 +50,7 @@ class GeometryCreate(CreateView, LastesGeometriesMixin):
     def form_valid(self, form):
         res = super(GeometryCreate, self).form_valid(form)
 
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             self.object.user = self.request.user
             self.object.save()
 

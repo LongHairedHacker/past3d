@@ -12,19 +12,26 @@ from django.db import models
 vertex_pattern = re.compile(r'vertex\s+([0-9.e+-]+)\s+([0-9.e+-]+)\s+([0-9.e+-]+)')
 
 
-def safe_upload_path(base_dir):
 
-    def generate_path(instance, filename):
 
-        ext = os.path.splitext(filename)[1]
+def model_path(instance, filename):
+    ext = os.path.splitext(filename)[1]
+    md5sum = md5()
+    md5sum.update(instance.name.encode('utf-8') + 
+    	str(datetime.now()).encode('utf-8') + 
+    	filename.encode('utf-8'))
+    randomname = md5sum.hexdigest()
+    return os.path.join('models', '%s%s' % (randomname, ext))
 
-        md5sum = md5()
-        md5sum.update(instance.name + str(datetime.now()) + filename)
-        randomname = md5sum.hexdigest()
+def source_path(instance, filename):
+    ext = os.path.splitext(filename)[1]
+    md5sum = md5()
+    md5sum.update(instance.name.encode('utf-8') + 
+    	str(datetime.now()).encode('utf-8') + 
+    	filename.encode('utf-8'))
+    randomname = md5sum.hexdigest()
+    return os.path.join('sources', '%s%s' % (randomname, ext))
 
-        return os.path.join(base_dir, '%s%s' % (randomname, ext))
-
-    return generate_path
 
 
 class Geometry(models.Model):
@@ -55,8 +62,8 @@ class Geometry(models.Model):
     width = models.FloatField(blank=True, default=0)
     depth = models.FloatField(blank=True, default=0)
     height = models.FloatField(blank=True, default=0)
-    file = models.FileField(upload_to=safe_upload_path('models'))
-    sourcefile = models.FileField(upload_to=safe_upload_path('sources'), blank=True)
+    file = models.FileField(upload_to=model_path)
+    sourcefile = models.FileField(upload_to=source_path, blank=True)
 
     def get_absolute_url(self):
         return reverse('geometry_details', kwargs={'id': self.pk})

@@ -1,15 +1,16 @@
+{% load static %}
 <html>
 <head>
 	<title>past3d :: {% block title %}{% endblock %}</title>
 
-  <link rel="stylesheet" href="{{STATIC_URL}}css/pure/pure-min.css">
+  <link rel="stylesheet" href="{% static 'css/pure/pure-min.css' %}">
   
-  <link rel="stylesheet" href="{{STATIC_URL}}css/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'css/font-awesome/css/font-awesome.min.css' %}">
   <!--[if IE 7]>
   <link rel="stylesheet" href="{{STATIC_URL}}css/font-awesome/css/font-awesome-ie7.min.css">
   <![endif]-->
 
-  <link rel="stylesheet" href="{{STATIC_URL}}css/layout.css">
+  <link rel="stylesheet" href="{% static 'css/layout.css' %}">
 
   {% block headeraddons %}
   {% endblock %}
