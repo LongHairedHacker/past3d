@@ -1,3 +1,5 @@
+.virtenv
+__pycache__
 *.pyc
 *.sqlite
 media/*

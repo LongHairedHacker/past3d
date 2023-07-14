@@ -16,14 +16,15 @@ urlpatterns = [
     re_path(r'^update/(?P<user_id>\d+)/$', UserUpdateView.as_view(), name='user_update'),
     path('password/reset/',
          auth_views.PasswordResetView.as_view(
-             template_name='users/password_reset.html'), {
+             template_name='users/password_reset.html',
+             email_template_name='users/reset_email.txt'), {
                  'extra_context': {
                      'latest_geometries': Geometry.get_latest()
                  },
-             },),
+             }, name='password_reset'),
     path('password/reset/confirm/<uidb64>/<token>/',
          auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html',
-            success_url=reverse_lazy('success_url')), {
+            success_url=reverse_lazy('login')), {
              'extra_context': {
                  'latest_geometries': Geometry.get_latest()
              },
